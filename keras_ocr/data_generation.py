@@ -130,7 +130,7 @@ def font_supports_alphabet(filepath, alphabet):
     font = PIL.ImageFont.truetype(filepath)
     try:
         for character in alphabet:
-            font.getsize(character)
+            font.getbbox(character) #has to be getbbox because Pillow changed the call. https://pillow.readthedocs.io/en/stable/releasenotes/10.0.0.html#font-size-and-offset-methods and https://github.com/python-pillow/Pillow/issues/7322
     # pylint: disable=bare-except
     except:
         return False
